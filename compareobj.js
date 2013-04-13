@@ -1,10 +1,10 @@
 // Filename: compareobj.js  
-// Timestamp: 2013.04.12-08:32:48 (last modified)  
+// Timestamp: 2013.04.12-21:36:39 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 
 var CompareObj = module.exports = (function () {
 
-  function getMembersUndefined (obj1, obj2, fn) {
+  function isSameMembersDefined (obj1, obj2, fn) {
     var isChildMissing = false, 
         membersUndefined,
         isMembersUndefined;
@@ -15,27 +15,27 @@ var CompareObj = module.exports = (function () {
         // we assume property, value is still valid.
         if (obj2[o] || typeof obj2[o] === 'string') {
           if (typeof obj1[o] === 'object') {
-            membersUndefined = getMembersUndefined(obj1[o], obj2[o], fn);
+            membersUndefined = isSameMembersDefined(obj1[o], obj2[o], fn);
             if (membersUndefined) {
               isMembersUndefined = true;
             }
           }
           
           if (isMembersUndefined) {
-            if (typeof fn === 'function') fn({ child : o });
-            return { child : o };
+            if (typeof fn === 'function') fn('child', o);
+            return false;
           }
         } else {
-          if (typeof fn === 'function') fn({ all : o });
-          return { all : o };
+          if (typeof fn === 'function') fn('property', o);
+          return false;
         }
       }
     }
-    return null;
+    return true;
   }
   
   return {
-    getMembersUndefined : getMembersUndefined
+    isSameMembersDefined : isSameMembersDefined
   };
     
 }());
