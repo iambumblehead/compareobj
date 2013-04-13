@@ -48,7 +48,6 @@ the same members
 
  > ```javascript
    var CompareObj = require('../compareobj');
- 
    CompareObj.isSameMembersDefined({
       prop1 : true,
       prop2 : {
@@ -66,7 +65,6 @@ the same members
    
  > ```javascript
    var CompareObj = require('../compareobj');
- 
    CompareObj.isSameMembersDefined({
       prop1 : true,
       prop2 : {
@@ -82,13 +80,12 @@ the same members
         }
       }   
    }); // true
-   ```   
+   ```  
 
 isSameMembers will also accept a callback
 
  > ```javascript
    var CompareObj = require('../compareobj');
- 
    CompareObj.isSameMembersDefined({
       prop1 : true,
       prop2 : {
