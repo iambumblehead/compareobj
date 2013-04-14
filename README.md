@@ -43,8 +43,7 @@ compareobj may be downloaded directly or installed through `npm`.
 
 #### <a id=usage">USAGE:
 
-compare two objects to see if they have definition for
-the same members
+compare two objects to see if they have definition for the same members
 
  > ```javascript
    var CompareObj = require('../compareobj');
@@ -86,7 +85,7 @@ isSameMembers will also accept a callback
 
  > ```javascript
    var CompareObj = require('../compareobj');
-   CompareObj.isSameMembersDefined({
+   CompareObj.isSameMembersDefinedSame({
       prop1 : true,
       prop2 : {
         prop2a : {
@@ -106,6 +105,45 @@ isSameMembers will also accept a callback
    // property prop2a2
    ```   
 
+compare two objects to see if they have the _same_ definition for the given members of the first object.
+
+ > ```javascript
+   var CompareObj = require('../compareobj');
+   CompareObj.isSameMembersDefined({
+      prop1 : true,
+      prop2 : {
+        prop2a : {
+          prop2a1 : true
+        }
+      }   
+   }, {
+      prop1 : true,
+      prop2 : {
+        prop2a : {
+          prop2a1 : true
+        }
+      }   
+   }); // true
+   ```  
+   
+ > ```javascript
+   var CompareObj = require('../compareobj');
+   CompareObj.isSameMembersDefined({
+      prop1 : true,
+      prop2 : {
+        prop2a : {
+          prop2a1 : true
+        }
+      }   
+   }, {
+      prop1 : true,
+      prop2 : {
+        prop2a : {
+          prop2a1 : false
+        }
+      }   
+   }); // false
+   ```     
 
 ---------------------------------------------------------
 

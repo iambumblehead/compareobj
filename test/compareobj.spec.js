@@ -104,3 +104,55 @@ describe("CompareObj.isSameMembersDefined", function () {
 
 });
 
+
+describe("CompareObj.isSameMembersDefinedSame", function () {
+  var result, resultExpected;
+
+  it("should return true if objects have the same definition for the given properties", function () {
+    var obj1 = {
+      prop1 : true,
+      prop2 : {
+        prop2a : {
+          prop2a1 : true
+        }
+      }
+    },
+
+    obj2 = {
+      prop1 : true,
+      prop2 : {
+        prop2a : {
+          prop2a1 : true        
+        }
+      }
+    };
+
+    result = CompareObj.isSameMembersDefinedSame(obj1, obj2);
+
+    expect( result ).toBe( true );
+  });
+
+  it("should return false if objects do not have the same definition for the given properties", function () {
+    var obj1 = {
+      prop1 : true,
+      prop2 : {
+        prop2a : {
+          prop2a1 : true
+        }
+      }
+    },
+
+    obj2 = {
+      prop1 : true,
+      prop2 : {
+        prop2a : {
+          prop2a1 : false        
+        }
+      }
+    };
+
+    result = CompareObj.isSameMembersDefinedSame(obj1, obj2);
+
+    expect( result ).toBe( true );
+  });
+});
