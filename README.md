@@ -47,7 +47,7 @@ compare two objects to see if they have definition for the same members
 
  > ```javascript
    var CompareObj = require('../compareobj');
-   CompareObj.isSameMembersDefined({
+   CompareObj.isSameMembersDefinedObj({
       prop1 : true,
       prop2 : {
         prop2a : {
@@ -64,7 +64,7 @@ compare two objects to see if they have definition for the same members
    
  > ```javascript
    var CompareObj = require('../compareobj');
-   CompareObj.isSameMembersDefined({
+   CompareObj.isSameMembersDefinedObj({
       prop1 : true,
       prop2 : {
         prop2a : {
@@ -85,7 +85,7 @@ isSameMembers will also accept a callback
 
  > ```javascript
    var CompareObj = require('../compareobj');
-   CompareObj.isSameMembersDefinedSame({
+   CompareObj.isSameMembersDefinedSameObj({
       prop1 : true,
       prop2 : {
         prop2a : {
@@ -109,7 +109,7 @@ compare two objects to see if they have the _same_ definition for the given memb
 
  > ```javascript
    var CompareObj = require('../compareobj');
-   CompareObj.isSameMembersDefined({
+   CompareObj.isSameMembersDefinedObj({
       prop1 : true,
       prop2 : {
         prop2a : {
@@ -128,7 +128,7 @@ compare two objects to see if they have the _same_ definition for the given memb
    
  > ```javascript
    var CompareObj = require('../compareobj');
-   CompareObj.isSameMembersDefined({
+   CompareObj.isSameMembersDefinedObj({
       prop1 : true,
       prop2 : {
         prop2a : {

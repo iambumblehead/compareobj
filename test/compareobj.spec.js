@@ -1,6 +1,54 @@
 var CompareObj = require('../compareobj');
 
-describe("CompareObj.isSameMembersDefined", function () {
+
+describe("CompareObj.isSameMembersDefinedArr", function () {
+  var result, resultExpected;
+  
+  it("should return true if elements have the same deep properties", function () {
+    var arr1 = ['1', '2'],
+        arr2 = ['2', '1'];
+    
+    result = CompareObj.isSameMembersDefinedArr(arr1, arr2);
+    
+    expect( result ).toBe( true );
+  });
+
+  it("should return false if elements do not have the same deep properties", function () {
+    var arr1 = ['1', '2'],
+        arr2 = ['1', '4'];
+    
+    result = CompareObj.isSameMembersDefinedArr(arr1, arr2);
+    
+    expect( result ).toBe( false );
+  });
+
+});
+
+describe("CompareObj.isSameMembersDefinedArrSame", function () {
+  var result, resultExpected;
+  
+  it("should return true if elements have the same deep properties", function () {
+    var arr1 = ['1', '2'],
+        arr2 = ['1', '2'];
+    
+    result = CompareObj.isSameMembersDefinedArrSame(arr1, arr2);
+    
+    expect( result ).toBe( true );
+  });
+
+  it("should return false if elements do not have the same deep properties", function () {
+    var arr1 = ['1', '2'],
+        arr2 = ['2', '1'];
+    
+    result = CompareObj.isSameMembersDefinedArrSame(arr1, arr2);
+    
+    expect( result ).toBe( false );
+  });
+
+});
+
+
+describe("CompareObj.isSameMembersDefinedObj", function () {
   var result, resultExpected;
 
   it("should return true if objects have the same deep properties", function () {
@@ -22,7 +70,7 @@ describe("CompareObj.isSameMembersDefined", function () {
       }
     };
 
-    result = CompareObj.isSameMembersDefined(obj1, obj2);
+    result = CompareObj.isSameMembersDefinedObj(obj1, obj2);
 
     expect( result ).toBe( true );
   });
@@ -44,7 +92,7 @@ describe("CompareObj.isSameMembersDefined", function () {
       }
     };
 
-    result = CompareObj.isSameMembersDefined(obj1, obj2);
+    result = CompareObj.isSameMembersDefinedObj(obj1, obj2);
 
     expect( result ).toBe( false );
   });
@@ -68,7 +116,7 @@ describe("CompareObj.isSameMembersDefined", function () {
       }
     };
 
-    result = CompareObj.isSameMembersDefined(obj1, obj2, function (propertyName, value) {
+    result = CompareObj.isSameMembersDefinedObj(obj1, obj2, function (propertyName, value) {
       if (propertyName === 'child') {
         expect( value ).toBe( 'prop2' );
         done();        
@@ -94,7 +142,7 @@ describe("CompareObj.isSameMembersDefined", function () {
       }
     };
 
-    result = CompareObj.isSameMembersDefined(obj1, obj2, function (propertyName, value) {
+    result = CompareObj.isSameMembersDefinedObj(obj1, obj2, function (propertyName, value) {
       if (propertyName === 'property') {
         expect( value ).toBe( 'prop2a1' );
         done();        
@@ -105,7 +153,7 @@ describe("CompareObj.isSameMembersDefined", function () {
 });
 
 
-describe("CompareObj.isSameMembersDefinedSame", function () {
+describe("CompareObj.isSameMembersDefinedObjSame", function () {
   var result, resultExpected;
 
   it("should return true if objects have the same definition for the given properties", function () {
@@ -127,7 +175,7 @@ describe("CompareObj.isSameMembersDefinedSame", function () {
       }
     };
 
-    result = CompareObj.isSameMembersDefinedSame(obj1, obj2);
+    result = CompareObj.isSameMembersDefinedObjSame(obj1, obj2);
 
     expect( result ).toBe( true );
   });
@@ -151,7 +199,7 @@ describe("CompareObj.isSameMembersDefinedSame", function () {
       }
     };
 
-    result = CompareObj.isSameMembersDefinedSame(obj1, obj2);
+    result = CompareObj.isSameMembersDefinedObjSame(obj1, obj2);
 
     expect( result ).toBe( true );
   });
