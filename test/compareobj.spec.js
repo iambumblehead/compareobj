@@ -97,6 +97,54 @@ describe("CompareObj.isSameMembersDefinedObj", function () {
     expect( result ).toBe( false );
   });
 
+  it("should return true if shared property-names have definitions of `null`", function () {
+    var obj1 = {
+      prop1 : null,
+      prop2 : {
+        prop2a : {
+          prop2a1 : null
+        }
+      }
+    },
+
+    obj2 = {
+      prop1 : null,
+      prop2 : {
+        prop2a : {
+          prop2a1 : null
+        }
+      }
+    };
+
+    result = CompareObj.isSameMembersDefinedObj(obj1, obj2);
+
+    expect( result ).toBe( true );
+  });
+
+  it("should return true if shared property-names have definitions of `undefined`", function () {
+    var obj1 = {
+      prop1 : null,
+      prop2 : {
+        prop2a : {
+          prop2a1 : undefined
+        }
+      }
+    },
+
+    obj2 = {
+      prop1 : null,
+      prop2 : {
+        prop2a : {
+          prop2a1 : undefined
+        }
+      }
+    };
+
+    result = CompareObj.isSameMembersDefinedObj(obj1, obj2);
+
+    expect( result ).toBe( true );
+  });
+
 
   it("should call a callback function for the first missing child property", function (done) {
     var obj1 = {

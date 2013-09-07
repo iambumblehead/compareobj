@@ -1,5 +1,5 @@
 // Filename: compareobj.js  
-// Timestamp: 2013.09.06-17:19:54 (last modified)  
+// Timestamp: 2013.09.06-17:27:17 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 
 var util = require('util'),
@@ -47,21 +47,25 @@ var CompareObj = module.exports = (function () {
         membersUndefined,
         isMembersUndefined;
 
-    for (var o in obj1) {
-      if (obj1.hasOwnProperty(o)) {
-        if (isSameType(obj1[o], obj2[o])) {
-          if (typeof obj1[o] === 'object') {
-            membersUndefined = isSameMembersDefinedObj(obj1[o], obj2[o], fn);
-            if (membersUndefined) {
-              if (typeof fn === 'function') fn('child', o);
-              return false;
+    if (typeof obj1 == 'object' && obj1) {
+      for (var o in obj1) {
+        if (obj1.hasOwnProperty(o)) {
+          if (isSameType(obj1[o], obj2[o])) {
+            if (typeof obj1[o] === 'object') {
+              membersUndefined = isSameMembersDefinedObj(obj1[o], obj2[o], fn);
+              if (membersUndefined) {
+                if (typeof fn === 'function') fn('child', o);
+                return false;
+              }
             }
+          } else {
+            if (typeof fn === 'function') fn('property', o);
+            return false;
           }
-        } else {
-          if (typeof fn === 'function') fn('property', o);
-          return false;
         }
       }
+    } else if (obj1 == obj2) {
+      return false;
     }
     return true;
   }
@@ -72,7 +76,7 @@ var CompareObj = module.exports = (function () {
         membersUndefined,
         isMembersUndefined;
         
-    if (obj1) {
+    if (typeof obj1 == 'object' && obj1) {
       for (var o in obj1) {
         if (obj1.hasOwnProperty(o)) {
           if (isSameType(obj1[o], obj2[o], 'object') || obj2[o] === obj1[o]) {
