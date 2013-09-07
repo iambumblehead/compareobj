@@ -1,5 +1,5 @@
 // Filename: compareobj.js  
-// Timestamp: 2013.05.15-21:42:00 (last modified)  
+// Timestamp: 2013.09.06-17:19:54 (last modified)  
 // Author(s): Bumblehead (www.bumblehead.com)  
 
 var util = require('util'),
@@ -71,24 +71,27 @@ var CompareObj = module.exports = (function () {
     var isChildMissing = false, 
         membersUndefined,
         isMembersUndefined;
-
-    for (var o in obj1) {
-      if (obj1.hasOwnProperty(o)) {
-        if (isSameType(obj1[o], obj2[o], 'object') || obj2[o] === obj1[o]) {
-          if (typeof obj1[o] === 'object') {
-            membersUndefined = isSameMembersDefinedObjSame(obj1[o], obj2[o], fn);
-            if (membersUndefined) {
-              if (typeof fn === 'function') fn('child', o);
-              return false;
+        
+    if (obj1) {
+      for (var o in obj1) {
+        if (obj1.hasOwnProperty(o)) {
+          if (isSameType(obj1[o], obj2[o], 'object') || obj2[o] === obj1[o]) {
+            if (typeof obj1[o] === 'object') {
+              membersUndefined = isSameMembersDefinedObjSame(obj1[o], obj2[o], fn);
+              if (membersUndefined) {
+                if (typeof fn === 'function') fn('child', o);
+                return false;
+              }
             }
+          } else {
+            if (typeof fn === 'function') fn('property', o);
+            return false;
           }
-        } else {
-          if (typeof fn === 'function') fn('property', o);
-          return false;
         }
       }
+    } else if (obj1 === obj2) {
+      return false;
     }
-
     return true;
   }
 

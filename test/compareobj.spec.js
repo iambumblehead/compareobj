@@ -203,4 +203,54 @@ describe("CompareObj.isSameMembersDefinedObjSame", function () {
 
     expect( result ).toBe( true );
   });
+
+
+  it("should return true if shared property-names have definitions of `null`", function () {
+    var obj1 = {
+      prop1 : null,
+      prop2 : {
+        prop2a : {
+          prop2a1 : null
+        }
+      }
+    },
+
+    obj2 = {
+      prop1 : null,
+      prop2 : {
+        prop2a : {
+          prop2a1 : null
+        }
+      }
+    };
+
+    result = CompareObj.isSameMembersDefinedObjSame(obj1, obj2);
+
+    expect( result ).toBe( true );
+  });
+
+  it("should return true if shared property-names have definitions of `undefined`", function () {
+    var obj1 = {
+      prop1 : null,
+      prop2 : {
+        prop2a : {
+          prop2a1 : undefined
+        }
+      }
+    },
+
+    obj2 = {
+      prop1 : null,
+      prop2 : {
+        prop2a : {
+          prop2a1 : undefined
+        }
+      }
+    };
+
+    result = CompareObj.isSameMembersDefinedObjSame(obj1, obj2);
+
+    expect( result ).toBe( true );
+  });
+
 });
